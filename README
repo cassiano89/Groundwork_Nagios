@@ -1,0 +1,45 @@
+Instalação groundowork do Zero no centos 6.10 32bit
+Versão Groundwork 6.0.1
+
+atualizar todo o sistema os repositorios
+
+- Mudar o nome do Host (vi /etc/sysconfig/network )
+- vi /etc/hosts
+
+- yum -y install glibc.i686
+- yum install java
+- yum install perl (o groundowrk utiliza perl 5.8.8 /usr/local/groundwork/perl/lib) o 5.10 é compativel)
+  Perl é preciso instalar alguns modulos para o script de SMS funcionar tanto http e https.
+  
+- yum install Perl-URI
+- yum install Perl-LWP 
+- yum install perl-Crypt-SSLeay
+
+#####Instalando Groundwork#####
+-chmod +x groundwork-6.0.1-br124-gw449-linux-32-installer
+- ./groundwork-6.0.1-br124-gw449-linux-32-installer
+
+só dar next 
+
+Ele vai pedir para colocar a senha do SQL coloque uma de sua preferencia e avance.
+
+- Liberar as portas no firewall
+
+22 SSH (TCP)
+80 Apache (TCP)
+162 SNMP (UDP)
+443 SSL (TCP)
+514 Syslog (UDP)
+4913 Foundation Listener (TCP)
+
+Rode o comando liberando cada porta
+iptables -I INPUT -p tcp --dport 587 -j ACCEPT
+
+/sbin/service iptables save
+
+SELINUX=disabled
+
+
+
+
+
